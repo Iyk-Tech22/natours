@@ -7,6 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -22,7 +23,6 @@ const app = express();
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
 app.set('view engine', 'pug');
-app.set();
 
 // 2) GLOBAL MIDDLEWARES
 // Set security HTTP headers
@@ -68,6 +68,9 @@ app.use(
     ]
   })
 );
+
+// Compression for better performance
+app.use(compression());
 
 // Test middleware
 app.use((req, res, next) => {

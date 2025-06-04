@@ -3,5 +3,5 @@ dev-data/
 .vscode
 .DS_Store
 *.env
-.parcel-cache
-.cache 
+.parcel-cache/
+.cache/ 
