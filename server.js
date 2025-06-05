@@ -52,3 +52,12 @@ process.on('unhandledRejection', err => {
     process.exit(1);
   });
 });
+
+// This is for the case when we have a SIGTERM signal emitted.
+// This is a signal that is sent to the process when we want to terminate it.
+process.on('SIGTERM', () => {
+  console.log('👋 SIGTERM RECEIVED. Shutting down gracefully');
+  server.close(() => {
+    console.log('💥 Process terminated!');
+  });
+});
