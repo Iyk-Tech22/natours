@@ -16,10 +16,15 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const bookingController = require('./controllers/bookingController');
+const viewController = require('./controllers/viewController');
 
 const app = express();
 // Trust proxy
 app.enable('trust proxy');
+
+// Set global alert variable
+app.use(viewController.alerts);
 
 // 1) VIEW ENGINE SETUP
 // Serving static files
@@ -47,6 +52,13 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour!'
 });
 app.use('/api', limiter);
+
+// Handle Strip webhooks
+app.post(
+  '/stripe-webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.stripeWebhookCheckout
+);
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
