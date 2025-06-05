@@ -33,8 +33,12 @@ app.use(helmet());
 // Development logging
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
-  app.use(cors());
 }
+
+// Enable CORS
+app.use(cors());
+// Handle preflight requests
+app.options('*', cors());
 
 // Limit requests from same API
 const limiter = rateLimit({
