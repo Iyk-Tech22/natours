@@ -11,4 +11,4 @@ The core packages and dependecies, which use to build natour are listed below.
 
 ## Demo Site
 
-[click here to visit Natours]([https://clipz-ten-sandy.vercel.app/](https://desolate-shelf-56704-12a7d7575030.herokuapp.com/))
+[click here to visit Natours](https://desolate-shelf-56704-12a7d7575030.herokuapp.com/)
